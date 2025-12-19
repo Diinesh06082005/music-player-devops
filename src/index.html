@@ -1,0 +1,139 @@
+<!-- Fully reviewed - with AI feature additions -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Music Player - AI Enhanced</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-updates.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+</head>
+<body>
+    <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading Your Library...</p>
+    </div>
+    <div id="custom-bg"></div>
+    <div id="background-gradient"></div>
+    <div id="toast-container"></div>
+    
+    <div class="aura-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 id="app-title">AURA</h1>
+            <div class="nav-card">
+                <nav class="main-nav">
+                    <a href="#" class="nav-item active" data-view="home"><i class="fas fa-home"></i><span>Home</span></a>
+                    <a href="#" class="nav-item" data-view="Video"><i class="fab fa-youtube"></i><span>Video</span></a>
+                    <a href="#" class="nav-item" data-view="jamendo"><i class="fas fa-broadcast-tower"></i><span>Jamendo</span></a>
+                    <a href="#" class="nav-item" data-view="ai-assistant"><i class="fas fa-robot"></i><span>AI Assistant</span></a>
+                    <a href="#" class="nav-item" data-view="controls"><i class="fas fa-sliders-h"></i><span>Controls</span></a>
+                </nav>
+                <div class="playlists">
+                    <h2>Playlists</h2>
+                    <div id="playlists-list"></div>
+                </div>
+                <div class="recents">
+                    <h2>Recents</h2>
+                    <div id="recents-list"></div>
+                </div>
+            </div>
+            <div class="bottom-nav-card">
+                <a href="#" class="nav-item" data-view="theme" title="Change Theme"><i class="fas fa-palette"></i></a>
+                <a href="#" class="nav-item" data-view="account" title="My Account"><i class="fas fa-user-circle"></i></a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <header class="top-bar">
+                <div id="top-bar-now-playing">
+                    <div id="now-playing-info">
+                        <img id="now-playing-artwork" src="https://placehold.co/40x40/2a2a3a/e0e0e0?text=A" alt="artwork">
+                        <div>
+                            <div id="now-playing-title">No song</div>
+                            <div id="now-playing-artist">...</div>
+                        </div>
+                    </div>
+                    <div id="now-playing-controls">
+                        <button id="now-playing-play-pause-btn" title="Play/Pause"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+                <div id="top-bar-default">
+                     <h2 id="current-view-title">Home</h2>
+                </div>
+                <div class="header-actions">
+                    <div class="status-icon" title="Toggle Session Time / Clock"><i class="fas fa-clock"></i><span id="app-time">00:00</span></div>
+                    <button id="ai-ready-toggle" title="Toggle AI Features"><i class="fas fa-robot"></i> AI Off</button>
+                </div>
+            </header>
+            <main class="aura-screen-container">
+                <div id="view-content"></div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div class="modal-overlay" id="confirmation-modal">
+        <div class="modal-content">
+            <h3 id="confirmation-title">Are you sure?</h3>
+            <p id="confirmation-message">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancel-confirmation-btn">Cancel</button>
+                <button class="modal-btn confirm-btn danger" id="confirm-action-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="create-playlist-modal">
+        <div class="modal-content">
+            <h3 id="create-playlist-modal-title">Create New Playlist</h3>
+            <p id="create-playlist-modal-desc">Enter a name for your new playlist.</p>
+            <input type="text" id="new-playlist-name-modal" placeholder="Enter playlist name...">
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancel-create-playlist-btn">Cancel</button>
+                <button class="modal-btn confirm-btn" id="confirm-create-playlist-btn">Create</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="add-to-playlist-modal">
+        <div class="modal-content">
+            <h3>Add "<span id="modal-track-name"></span>" to...</h3>
+            <ul id="modal-playlist-list"></ul>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancel-add-to-playlist-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="ai-content-modal">
+        <div class="modal-content">
+            <h3 id="ai-modal-title">AI is thinking...</h3>
+            <div id="ai-modal-content"><div class="loading-spinner" style="margin: 2rem auto;"></div></div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancel-ai-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="audio-player" crossorigin="anonymous"></audio>
+
+    <!-- Scripts moved to the end of the body to ensure correct loading order -->
+    <script src="https://unpkg.com/ytdl-browser@latest/dist/ytdl.min.js"></script>
+    <script src="script1.js"></script>
+    <script src="script2.js"></script>
+    <script src="script3.js"></script>
+    <script src="ai.js"></script>
+    <script src="backend.js"></script>
+    <!-- ADDED: YouTube audio toggle script -->
+    <script src="youtube-audio-toggle.js"></script>
+
+    <!-- Google API Libraries -->
+    <script src="https://apis.google.com/js/api.js" onload="onGoogleApiLoad()"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
