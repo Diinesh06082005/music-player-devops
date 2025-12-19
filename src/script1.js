@@ -1,4 +1,4 @@
-// --- SCRIPT 1: CORE, STATE, AND INITIALIZATION (WITH AI & EQ STATE) ---
+// commit 4 --- SCRIPT 1: CORE, STATE, AND INITIALIZATION (WITH AI & EQ STATE) ---
 
 // Global state for the entire application
 const state = {
