@@ -1,4 +1,4 @@
-// --- SCRIPT 2: UI, VIEW MANAGEMENT, AND TEMPLATES (WITH AI & EQ VIEWS) ---
+// ---  commit 5 SCRIPT 2: UI, VIEW MANAGEMENT, AND TEMPLATES (WITH AI & EQ VIEWS) ---
 
 // --- VIEW TEMPLATES ---
 function getTemplateForView(view) {
