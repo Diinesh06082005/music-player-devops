@@ -1,4 +1,4 @@
-// --- SCRIPT 5: AI INTEGRATION (GEMINI API) ---
+// --- commit 7 SCRIPT 5: AI INTEGRATION (GEMINI API) ---
 
 async function callAiModel(prompt, useGoogleSearch = false) {
     if (!state.settings.aiFeaturesEnabled) {
