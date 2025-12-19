@@ -1,4 +1,4 @@
-// --- SCRIPT 3: PLAYER ENGINE, AUDIO API, AND CONTROLS (WITH AI & EQ) ---
+// --- commit 6 SCRIPT 3: PLAYER ENGINE, AUDIO API, AND CONTROLS (WITH AI & EQ) ---
 
 function closeEqualizer() {
     const eqPanel = document.getElementById('eq-panel');
