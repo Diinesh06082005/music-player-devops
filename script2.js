@@ -294,7 +294,7 @@ function getTemplateForView(view) {
 function updateTopBarTitle(view) {
     const titleMap = {
         home: 'Home',
-        'Video': 'YT to MP3',
+        'Video': 'Video Streaming',
         'jamendo': 'Jamendo Music',
         'ai-assistant': 'AI Assistant',
         controls: 'Controls & Settings',
